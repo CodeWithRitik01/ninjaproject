@@ -1,17 +1,17 @@
 const User = require('../models/user');
-module.exports.profile = function(req, res){
+module.exports.profile =async function(req, res){
    
     console.log(req.cookies.user_id);
    if(req.cookies.user_id){
     try{
-       const existUser = User.findById(req.cookies.user_id);
+       const existUser =await User.findById(req.cookies.user_id);
        if(existUser){
        
         return res.render('users_profile',{
           title:"User Profile",
           user:existUser
           
-        })
+        });
        }
        console.log('not found');
        return res.redirect('/users/sign-in');
