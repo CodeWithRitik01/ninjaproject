@@ -1,9 +1,28 @@
 const User = require('../models/user');
 module.exports.profile = function(req, res){
-    // res.end('<h1>Users profile</h1>');
-    return res.render('users_profile',{
-        title:"profile"
-       })
+   
+    console.log(req.cookies.user_id);
+   if(req.cookies.user_id){
+    try{
+       const existUser = User.findById(req.cookies.user_id);
+       if(existUser){
+       
+        return res.render('users_profile',{
+          title:"User Profile",
+          user:existUser
+          
+        })
+       }
+       console.log('not found');
+       return res.redirect('/users/sign-in');
+    }catch(err){
+      console.error('Error in user creation:', err);
+      return res.status(500).send('Internal Server Error');
+    }
+   }else{
+    console.log('didnt');
+    return res.redirect('/users/sign-in');
+   }
 } 
 
 
@@ -72,6 +91,36 @@ module.exports.create = async function (req, res) {
 
 
 //sign in and create a session for user
-module.exports.createSession = function(req, res){
-    // todo later
+module.exports.createSession = async function(req, res){
+    //steps to make createSession
+    //find the user
+try{
+    const existingUser = await User.findOne({ email: req.body.email });
+
+        //handle user found
+
+    if(existingUser){
+          //handle password which does't match
+          if(existingUser.password != req.body.password){
+            return res.redirect('back');
+          }
+
+         //handle session creation
+         res.cookie('user_id', existingUser.id);
+         return res.redirect('/users/profile');
+
+    }else{
+           //handle user not found
+           return res.redirect('back');
+    }
+
+}catch(err){
+    console.error('Error in user creation:', err);
+    return res.status(500).send('Internal Server Error');
+}
+   
+
+  
+
+ 
 }
