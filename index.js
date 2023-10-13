@@ -67,6 +67,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//to find user by id
 app.use(passport.setAuthenticatedUser);
 
 
