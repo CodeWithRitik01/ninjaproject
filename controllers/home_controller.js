@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 
 // module.exports.home = function(req, res){
    // console.log(req.cookies);
@@ -18,15 +19,19 @@ const Post = require('../models/post');
 module.exports.home = async function(req, res){
    //populate the user of each post
    try {
-       const posts = await Post.find({}).populate('user').populate({
+       const posts = await Post.find({})
+       .sort('-createdAt')
+       .populate('user').populate({
          path: 'comments',
          populate: {
             path: 'user'
          }
        });
+       const users = await User.find({});
        return res.render('home', {
            title: "Codeal | Home",
-           posts: posts
+           posts: posts,
+           all_users: users
        });
    } catch (err) {
        console.error('Error in finding posts:', err);

@@ -19,6 +19,9 @@ const commentSchema = new mongoose.Schema({
     timestamps: true
 });
 
+commentSchema.methods.removeComment = async function() {
+    return this.deleteOne(); // Use deleteOne() for newer versions
+};
 
 const Comment = mongoose.model('Comment', commentSchema);
 module.exports = Comment;

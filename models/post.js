@@ -20,5 +20,9 @@ const postSchema = new mongoose.Schema({
     timestamps:true
 });
 
+postSchema.methods.removePost = async function() {
+    return this.deleteOne(); // Use deleteOne() for newer versions
+};
+
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;
