@@ -25,6 +25,7 @@ module.exports.create = async function(req, res){
                     post: post
                 },
                 message: "Post create!"
+              
             });
         }
 
@@ -41,7 +42,7 @@ module.exports.create = async function(req, res){
 
 module.exports.destroy = async function(req, res){
     try{
-        const post =await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id);
         //.id means consverting the object id into string
         if(post.user == req.user.id){
             await post.removePost();

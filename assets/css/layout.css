@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-image: linear-gradient(to right, #c3edf7, #e3c0dd);
 }
 
 body #layout-main {

@@ -1,3 +1,13 @@
 body{
-    background-color: gray;
+    background-image: linear-gradient(to right ,rgb(195, 237, 247), rgb(227, 192, 221));
+
+    img{
+        border-radius: 50%;
+        border: 1px solid white;
+    }
+    
+    input{
+        margin:10px;
+    }
 }
+
