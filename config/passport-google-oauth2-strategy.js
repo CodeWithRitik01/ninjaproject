@@ -6,8 +6,8 @@ const User = require('../models/user');
 
 //tell passport to user a new strategy for google login
 passport.use(new googleStrategy({
-        clientID:"41568065850-b310fjkmq2m308jtq3n4b3g2q1v980n7.apps.googleusercontent.com",
-        clientSecret: "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",
+        clientID:"",
+        clientSecret: "",
         callbackURL: "http://localhost:8000/users/auth/google/callback",
     },
 
