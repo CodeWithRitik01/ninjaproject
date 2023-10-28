@@ -2,11 +2,11 @@ body {
   background-image: linear-gradient(to right, #c3edf7, #e3c0dd);
 }
 
-img {
+body img {
   border-radius: 50%;
   border: 1px solid white;
 }
 
-input {
+body input {
   margin: 10px;
 }
