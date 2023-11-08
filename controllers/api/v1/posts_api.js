@@ -4,7 +4,8 @@ const Comment = require('../../../models/comments');
 module.exports.index = async function(req, res){
     let posts = await Post.find({})
     .sort('-createdAt')
-    .populate('user').populate({
+    .populate('user')
+    .populate({
       path: 'comments',
       populate: {
          path: 'user'
@@ -13,7 +14,7 @@ module.exports.index = async function(req, res){
 
     return res.json(200, {
         message: "List of posts",
-        post: posts
+        posts: posts
     })
 }
 
@@ -35,7 +36,7 @@ module.exports.destroy = async function(req, res){
             message: "Post and associated comments are deleted successfully!"
            });
         }else{
-          return res.json(200, {
+          return res.json(401, {
             message: "You cannot delete this post!"
           });
         }

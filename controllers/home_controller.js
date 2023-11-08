@@ -25,8 +25,15 @@ module.exports.home = async function(req, res){
          path: 'comments',
          populate: {
             path: 'user'
+         },
+         //for likes
+         populate: {
+            path: 'likes'
          }
-       });
+       }).populate('comments')
+       .populate('likes');
+
+       
        const users = await User.find({});
        return res.render('home', {
            title: "Codeal | Home",

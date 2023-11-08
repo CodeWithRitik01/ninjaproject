@@ -2,15 +2,15 @@ const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
 
-module.exports.profile =async function(req, res){
+module.exports.profile = async function(req, res){
     // res.end('<h1>Users profile</h1>');
-    const user =await User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
     
     return res.render('users_profile',{
         title:"profile",
         profile_user: user
         
-       });
+       }); 
 } 
 
 
@@ -101,7 +101,7 @@ module.exports.signIn = function(req, res){
 
 module.exports.create = async function (req, res) {
     try {
-      if (req.body.password !== req.body.confirm_password) {
+      if (req.body.password != req.body.confirm_password) {
         console.log('Passwords do not match:', req.body.password, req.body.confirmPassword);
         return res.redirect('back');
       }

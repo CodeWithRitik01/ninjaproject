@@ -21,7 +21,13 @@ const userSchema = new mongoose.Schema({
     // after code is for multer. or for adding media(like photo).
     avatar: {
         type: String
-    }
+    },
+    friendships: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Friendship'
+        }
+    ]
 
 },{
     timestamps:true

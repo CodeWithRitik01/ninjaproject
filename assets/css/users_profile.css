@@ -1,12 +1,7 @@
 body {
-  background-image: linear-gradient(to right, #c3edf7, #e3c0dd);
-}
-
-body img {
-  border-radius: 50%;
-  border: 1px solid white;
-}
-
-body input {
-  margin: 10px;
-}
+  background-image: linear-gradient(to right, #c3edf7, #e3c0dd); }
+  body img {
+    border-radius: 50%;
+    border: 1px solid white; }
+  body input {
+    margin: 10px; }
